@@ -1,0 +1,566 @@
+/* --- 1. VARIABEL & PENGATURAN DASAR --- */
+:root {
+    --warna-primer: #1e1e1e; /* Hitam atau abu-abu gelap untuk latar belakang */
+    --warna-sekunder: #ffffff; /* Putih untuk teks */
+    --warna-aksen-1: #00ffff; /* Biru listrik (Cyan) */
+    --warna-aksen-2: #ff007f; /* Magenta cerah */
+    --transisi-cepat: 0.3s ease-in-out;
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif; /* Ganti dengan font pilihan Anda */
+    background-color: var(--warna-primer);
+}
+
+/* --- 2. TATA LETAK DUA KOLOM --- */
+.hero-slide {
+    display: flex;
+    height: 100vh;
+    background-color: var(--warna-primer);
+    color: var(--warna-sekunder);
+}
+
+.kiri-gambar {
+    width: 50%;
+    /* Mengisi 100% dan memotong jika perlu */
+    overflow: hidden; 
+}
+
+.kiri-gambar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Efek gambar sedikit gelap untuk kontras */
+    filter: brightness(85%); 
+}
+
+.kanan-konten {
+    width: 50%;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Menengahankan konten secara vertikal */
+    
+    /* --- ANIMASI TEKS: AWAL --- */
+    opacity: 0; /* Mulai dari tidak terlihat */
+    transform: translateY(20px); /* Mulai sedikit di bawah */
+    animation: fadeInSlide 1.5s forwards; /* Terapkan animasi */
+}
+
+/* Teks Judul dan Sapaan */
+.kanan-konten h1 {
+    font-size: 4em;
+    margin: 0;
+    color: var(--warna-aksen-2); /* Nama menggunakan Magenta */
+}
+
+.kanan-konten h2 {
+    font-size: 1.8em;
+    font-weight: 300;
+    margin: 5px 0 20px 0;
+    color: var(--warna-aksen-1); /* Spesialisasi menggunakan Biru Listrik */
+}
+
+.sapaan {
+    font-size: 1.2em;
+    color: var(--warna-sekunder);
+    margin-bottom: 5px;
+}
+
+/* --- 3. ANIMASI TOMBOL CTA --- */
+.tombol-cta {
+    display: inline-block;
+    padding: 15px 30px;
+    margin-top: 20px;
+    background-color: var(--warna-aksen-1); /* Latar belakang Biru Listrik */
+    color: var(--warna-primer); /* Teks Hitam kontras */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid var(--warna-aksen-1);
+    transition: background-color var(--transisi-cepat), color var(--transisi-cepat), transform var(--transisi-cepat);
+}
+
+.tombol-cta:hover {
+    background-color: transparent; /* Latar belakang hilang */
+    color: var(--warna-aksen-1); /* Teks menjadi Biru Listrik */
+    transform: translateY(-3px); /* Tombol bergerak sedikit ke atas */
+    border-color: var(--warna-aksen-1);
+}
+
+/* --- 4. DEFINISI KEYFRAMES UNTUK ANIMASI --- */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* --- CSS BARU UNTUK SLIDE KEDUA (Tentang Saya) --- */
+
+/* Pengaturan Dasar Slide */
+.about-slide {
+    display: flex;
+    min-height: 100vh; /* Minimal satu layar penuh */
+    background-color: var(--warna-sekunder); /* Latar belakang putih */
+    color: var(--warna-primer); /* Teks gelap */
+}
+
+.kiri-gambar-about {
+    width: 50%;
+    /* Gunakan padding untuk memberi ruang di sekitar gambar */
+    padding: 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kiri-gambar-about img {
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 10px; /* Sudut sedikit membulat */
+    /* Tambahkan bayangan untuk efek visual */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    
+    /* ANMASI: Gambar muncul dari samping (OPSIONAL) */
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideInFromLeft 1.2s forwards 0.3s; /* Delay 0.3s */
+}
+
+.kanan-konten-about {
+    width: 50%;
+    padding: 80px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* ANIMASI: Teks muncul perlahan */
+    opacity: 0;
+    animation: fadeIn 1.5s forwards 0.5s; /* Delay 0.5s */
+}
+
+/* Judul Bagian */
+.judul-bagian {
+    font-size: 2.5em;
+    color: var(--warna-aksen-2); /* Magenta cerah untuk judul */
+    margin-bottom: 30px;
+}
+
+/* Data Diri */
+.data-diri h3.data-nama {
+    font-size: 2em;
+    margin-top: 0;
+    color: var(--warna-aksen-1); /* Biru listrik untuk nama */
+}
+
+.data-diri p.data-detail {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+/* Garis Pemisah (Divider) */
+.garis-pemisah {
+    border: 0;
+    height: 4px; /* Ketebalan garis */
+    background-color: var(--warna-aksen-1); /* Warna garis Biru Listrik */
+    margin: 30px 0;
+    width: 100px; /* Garis pendek yang elegan */
+    align-self: flex-start; /* Pastikan garis rata kiri */
+    
+    /* ANIMASI GARIS: Garis memanjang perlahan */
+    width: 0;
+    animation: drawLine 1s forwards 1.5s; /* Mulai setelah teks muncul */
+}
+
+/* Cerita Singkat */
+.cerita-singkat h3 {
+    color: var(--warna-aksen-2); /* Warna Magenta cerah */
+    margin-top: 0;
+}
+
+.cerita-singkat p.paragraf-cerita {
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+/* --- DEFINISI KEYFRAMES BARU --- */
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes drawLine {
+    from { width: 0; }
+    to { width: 100px; } /* Panjang garis akhir */
+}
+/* --- CSS BARU UNTUK SLIDE KETIGA (Pendidikan) --- */
+
+.pendidikan-slide {
+    min-height: 80vh; /* Tinggi yang cukup */
+    padding: 60px 5%;
+    background-color: var(--warna-primer); /* Latar belakang gelap */
+    color: var(--warna-sekunder); /* Teks putih */
+}
+
+.judul-pendidikan {
+    text-align: center;
+    font-size: 3em;
+    color: var(--warna-aksen-2); /* Judul menggunakan Magenta */
+    margin-bottom: 50px;
+    
+    /* ANMASI: Judul muncul dari atas */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInSlide 1s forwards;
+}
+
+.pendidikan-container {
+    display: flex; /* Kunci untuk tata letak horizontal */
+    gap: 30px; /* Jarak antar kartu */
+    justify-content: center; /* Kartu berada di tengah */
+    padding: 20px 0;
+}
+
+.kartu-sekolah {
+    flex: 1; /* Agar setiap kartu memiliki lebar yang sama */
+    max-width: 350px; 
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease-in-out;
+
+    /* ANMASI: Awal tersembunyi */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Hover Animasi Kartu */
+.kartu-sekolah:hover {
+    transform: translateY(-10px); /* Kartu naik sedikit saat disentuh */
+    box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4); /* Bayangan berwarna */
+}
+
+.icon-sekolah {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.kartu-sekolah h3 {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.nama-sekolah {
+    font-weight: bold;
+    color: var(--warna-aksen-1); /* Nama sekolah Biru Listrik */
+    margin-bottom: 5px;
+}
+
+.tahun {
+    font-style: italic;
+    color: var(--warna-aksen-2); /* Tahun Magenta */
+    margin-bottom: 15px;
+}
+
+/* --- WARNA BERBEDA UNTUK SETIAP KARTU --- */
+
+.kartu-sekolah.sd {
+    background-color: rgba(255, 0, 127, 0.1); /* Latar belakang magenta transparan */
+    animation: fadeInSlide 1s forwards 0.5s; /* Animasi mulai 0.5s */
+}
+
+.kartu-sekolah.smp {
+    background-color: rgba(0, 255, 255, 0.1); /* Latar belakang cyan transparan */
+    animation: fadeInSlide 1s forwards 0.8s; /* Animasi mulai 0.8s */
+}
+
+.kartu-sekolah.sma {
+    background-color: rgba(255, 255, 0, 0.1); /* Latar belakang kuning transparan */
+    animation: fadeInSlide 1s forwards 1.1s; /* Animasi mulai 1.1s */
+}
+
+
+/* --- KEYFRAMES (Re-used dari slide 1) --- */
+/*
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+*/
+/* --- CSS BARU UNTUK SLIDE KEEMPAT (Minat & Idola) --- */
+
+.minat-slide {
+    min-height: 80vh;
+    padding: 60px 5%;
+    background-color: var(--warna-sekunder); /* Latar belakang putih */
+    color: var(--warna-primer); /* Teks gelap */
+}
+
+.judul-minat {
+    text-align: center;
+    font-size: 3em;
+    color: var(--warna-aksen-1); /* Judul menggunakan Biru Listrik */
+    margin-bottom: 50px;
+    
+    /* ANIMASI: Judul muncul dari atas (reuse fadeInSlide) */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInSlide 1s forwards;
+}
+
+.minat-container {
+    display: flex; /* Kunci horizontal */
+    gap: 40px; 
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.kartu-minat {
+    flex: 1;
+    max-width: 450px; 
+    border-radius: 10px;
+    overflow: hidden; /* Penting agar gambar tidak keluar dari batas kartu */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s;
+    background-color: #ffffff; /* Latar belakang kartu putih */
+
+    /* ANMASI: Awal tersembunyi */
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+/* Hover Animasi Kartu */
+.kartu-minat:hover {
+    transform: scale(1.03); /* Kartu membesar sedikit */
+}
+
+.gambar-minat {
+    width: 100%;
+    height: 250px; /* Tinggi tetap untuk gambar */
+    overflow: hidden;
+}
+
+.gambar-minat img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Agar gambar terisi penuh tanpa terdistorsi */
+    transition: transform 0.5s;
+}
+
+.kartu-minat:hover .gambar-minat img {
+    transform: scale(1.05); /* Gambar membesar halus saat hover */
+}
+
+.detail-minat {
+    padding: 25px;
+    text-align: left;
+}
+
+.detail-minat h3 {
+    margin-top: 0;
+    font-size: 1.8em;
+}
+
+.role {
+    font-size: 1em;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.garis-pemisah-minat {
+    border: 0;
+    height: 3px;
+    width: 50px;
+    margin: 15px 0;
+}
+
+/* --- WARNA DAN ANIMASI KHUSUS --- */
+
+/* KARTU JOKOWI */
+.kartu-minat.jokowi {
+    /* Animasi mulai setelah judul */
+    animation: zoomIn 1s forwards 0.5s; 
+}
+.kartu-minat.jokowi .garis-pemisah-minat {
+    background-color: #ffcc00; /* Warna Kuning/Emas */
+}
+.kartu-minat.jokowi h3 {
+    color: #007bff; /* Biru terang */
+}
+.kartu-minat.jokowi:hover {
+    box-shadow: 0 10px 40px rgba(0, 123, 255, 0.4); 
+}
+
+/* KARTU MANCHESTER UNITED */
+.kartu-minat.manchester-united {
+    /* Animasi mulai berurutan (staggered) */
+    animation: zoomIn 1s forwards 0.8s; 
+}
+.kartu-minat.manchester-united .garis-pemisah-minat {
+    background-color: #ff0000; /* Warna Merah MU */
+}
+.kartu-minat.manchester-united h3 {
+    color: #8B0000; /* Merah Marun gelap */
+}
+.kartu-minat.manchester-united:hover {
+    box-shadow: 0 10px 40px rgba(255, 0, 0, 0.4); 
+}
+
+/* --- KEYFRAMES BARU --- */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* --- CSS BARU UNTUK SLIDE KELIMA (Media Sosial) --- */
+
+.sosial-slide {
+    min-height: 50vh; /* Slide yang lebih ringkas */
+    padding: 60px 5%;
+    background-color: var(--warna-primer); /* Latar belakang gelap */
+    color: var(--warna-sekunder); /* Teks putih */
+}
+
+.judul-sosial {
+    text-align: center;
+    font-size: 3em;
+    color: var(--warna-aksen-2); /* Judul Magenta */
+    margin-bottom: 50px;
+    /* ANIMASI: Judul muncul */
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInSlide 1s forwards;
+}
+
+.sosial-container {
+    display: flex; /* Kunci horizontal */
+    gap: 50px; 
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.kartu-sosial {
+    flex: 1;
+    max-width: 400px; 
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.05); /* Latar belakang kartu transparan gelap */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    border-top: 5px solid transparent; /* Untuk aksen warna di atas */
+    transition: transform 0.4s ease-in-out, border-top-color 0.4s;
+    
+    /* ANMASI: Awal tersembunyi */
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.kartu-sosial:hover {
+    transform: translateY(-10px); /* Kartu naik sedikit saat hover */
+}
+
+.icon-sosial {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+}
+
+.kartu-sosial h3 {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.username {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--warna-aksen-1); /* Username Biru Listrik */
+    margin-bottom: 10px;
+}
+
+.keterangan {
+    font-size: 0.9em;
+    margin-bottom: 25px;
+}
+
+.tombol-sosial {
+    display: block;
+    padding: 12px 25px;
+    color: #ffffff; /* Teks tombol putih */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.tombol-sosial:hover {
+    transform: scale(1.05);
+}
+
+/* --- WARNA BRANDING & ANIMASI SPESIFIK --- */
+
+/* KARTU INSTAGRAM */
+.kartu-sosial.instagram {
+    animation: zoomIn 1s forwards 0.5s; 
+}
+.kartu-sosial.instagram:hover {
+    border-top-color: #E1306C; /* Warna pink/merah Instagram */
+    box-shadow: 0 5px 30px rgba(225, 48, 108, 0.5);
+}
+.insta-btn {
+    background-color: #E1306C; /* Warna pink/merah Instagram */
+}
+.insta-btn:hover {
+    background-color: #ff548d;
+}
+
+/* KARTU FACEBOOK */
+.kartu-sosial.facebook {
+    animation: zoomIn 1s forwards 0.8s; /* Staggered fade-in */
+}
+.kartu-sosial.facebook:hover {
+    border-top-color: #1877F2; /* Warna biru Facebook */
+    box-shadow: 0 5px 30px rgba(24, 119, 242, 0.5);
+}
+.fb-btn {
+    background-color: #1877F2; /* Warna biru Facebook */
+}
+.fb-btn:hover {
+    background-color: #4295f5;
+}
+
+/* Menggunakan kembali Keyframes zoomIn dari slide sebelumnya */
+/*
+@keyframes zoomIn { ... } 
+@keyframes fadeInSlide { ... }
+*/
